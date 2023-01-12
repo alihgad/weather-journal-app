@@ -29,7 +29,9 @@ function listening(){
     console.log('welcome in your server');
     console.log(`server is runing on localhost:${port}`);
 }
-app.get('/weather',function(req,res){
-    res.send(projectData);
+app.post('/weather', async function(req,res){
+    const body = await req.body;
+    projectData = body ; 
     console.log(projectData);
+    res.status(200).send(projectData);
 })
