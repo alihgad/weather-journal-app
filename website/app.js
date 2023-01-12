@@ -90,8 +90,8 @@ const postData = async (url = '', data = {}) => {
 // };
 const updateContent = async (data) => {
     if(data.date){
-        date.innerHTML = data.date;
-        temp.innerHTML = data.temp;
+        date.innerHTML = `date: ${data.date}`;
+        temp.innerHTML = `temp: ${data.temp}`;
         content.innerHTML = data.content;
     }else{
         content.innerHTML = data.message;
