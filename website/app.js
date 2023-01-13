@@ -15,7 +15,7 @@ const apiKey = '&appid=f02311ef44f6f32cff2a21d054c3333f&units=imperial';
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 // Create a new date instance dynamically with JS
 const d =  new Date();
-const newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+const newDate = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
 generate.addEventListener('click', (event) => {
     event.preventDefault();
     const madeURL = `${baseURL}${zip.value}${apiKey}`;
@@ -25,9 +25,10 @@ generate.addEventListener('click', (event) => {
                 .then((info) => {
                     postData('/weather', info)
                         .then((data) => {
-                            // retrieveData('/weather')
-                            //     .then((data) => 
+                            retrieveData('/weather')
+                            .then((data) =>{ 
                             updateContent(data);
+                            })
                         })
                 })
         })
@@ -98,7 +99,7 @@ const retrieveData = async (url) => {
 const updateContent = async (data) => {
     if (data){
         date.innerHTML = `date: ${newDate}`;
-        temp.innerHTML = `temp: ${data.temp}`;
+        temp.innerHTML = `temp: ${Math.round(data.temp)}`;
         content.innerHTML = data.content ? data.content : "what is your feeling" ;
         title.innerHTML = "";
 }
